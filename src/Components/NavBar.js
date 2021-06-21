@@ -13,7 +13,8 @@ const NavBarStyled = styled.header`
   justify-content: space-between;
   padding: 15px;
   background-color: #299B01;
-  color: #fff
+  color: #fff;
+  z-index: 5;
 `;
 
 const Logo = styled.div`
