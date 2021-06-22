@@ -5,6 +5,7 @@ import signImg from '../../image/sign.svg';
 
 const NavBarStyled = styled.header`
   position: fixed;
+  z-index: 100;
   left: 0px;
   top: 0px;
   height: 80px;
@@ -13,8 +14,7 @@ const NavBarStyled = styled.header`
   justify-content: space-between;
   padding: 15px;
   background-color: #299B01;
-  color: #fff;
-  z-index: 5;
+  color: #ffffff;
 `;
 
 const Logo = styled.div`
@@ -30,20 +30,23 @@ const H1 = styled.h1`
 const ImgLogo = styled.img`
   width: 50px;
 `;
+
 const Login = styled.button`
   color: #ffffff;
+  font-size: 14px;
   border: none;
   background: transparent;
 `;
+
 export const NavBar = () => (
-    <NavBarStyled>
-      <Logo>
-        <ImgLogo src={logoImg} alt="лого" />
-        <H1>MrDonald's</H1>
-      </Logo>
-      <Login>
-        <img src={signImg} alt="войти" />
-        <p>Войти</p>
-      </Login>
-    </NavBarStyled>
-  );
+  <NavBarStyled>
+    <Logo>
+      <ImgLogo src={logoImg} alt="Лого" />
+      <H1>MrDonald&apos;s</H1>
+    </Logo>
+    <Login>
+      <img src={signImg} alt="Пользователь" />
+      <p>Войти</p>
+    </Login>
+  </NavBarStyled>
+);

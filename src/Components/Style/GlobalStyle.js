@@ -38,4 +38,10 @@ export const GlobalStyle = createGlobalStyle`
   input, button {
     font-family: inherit;
   }
+  input[type='number']{
+    -moz-appearance: textfield;
+    &::-webkit-inner-spin-button, &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+    }
+  }
 `;
