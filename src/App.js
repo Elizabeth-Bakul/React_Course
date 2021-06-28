@@ -1,6 +1,7 @@
 import React from 'react';
 import firebase from 'firebase/app';
 import 'firebase/auth';
+import 'firebase/database';
 import { NavBar } from './Components/NavBar/NavBar';
 import { Menu } from './Components/Menu/Menu';
 import { GlobalStyle } from './Components/Style/GlobalStyle';
@@ -9,14 +10,15 @@ import { Order } from './Components/Order/Order';
 import { useOpenItem } from './Components/Hooks/useOpenItem';
 import { useOrders } from './Components/Hooks/useOrders';
 import { useAuth } from './Components/Hooks/useAuth';
+import { useTitle } from './Components/Hooks/useTitle';
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBpQ322G-UE5W0g2A_J_kJkLaBSLL65Pfg",
-  authDomain: "mcdonalds-fbf10.firebaseapp.com",
-  projectId: "mcdonalds-fbf10",
-  storageBucket: "mcdonalds-fbf10.appspot.com",
-  messagingSenderId: "647540580699",
-  appId: "1:647540580699:web:85513330bc763b5b9c3a7e"
+  apiKey: "AIzaSyAx6k3Muu8RsUXK2ZCFcm3033vcom6PCSs",
+  authDomain: "mmdon-853a8.firebaseapp.com",
+  projectId: "mmdon-853a8",
+  storageBucket: "mmdon-853a8.appspot.com",
+  messagingSenderId: "256495336164",
+  appId: "1:256495336164:web:025d6a0f7b3e68f3744af1"
 };
 
 firebase.initializeApp(firebaseConfig);
@@ -25,12 +27,13 @@ function App() {
   const auth = useAuth(firebase.auth);
   const openItem = useOpenItem();
   const orders = useOrders();
+  useTitle(openItem.openItem);
 
   return (
     <>
       <GlobalStyle />
       <NavBar {...auth} />
-      <Order {...orders} {...openItem} {...auth} />
+      <Order {...orders} {...openItem} {...auth} firebaseDatabase={firebase.database} />
       <Menu {...openItem} />
       {openItem.openItem && <ModalItem {...openItem} {...orders} />}
     </>
