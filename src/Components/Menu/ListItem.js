@@ -1,6 +1,6 @@
-import React from 'react';
-import styled from 'styled-components';
-import { formatCurrency } from '../Functions/secondaryFunction';
+import React from "react";
+import styled from "styled-components";
+import { formatCurrency } from "../Functions/secondaryFunction";
 
 const List = styled.ul`
   display: flex;
@@ -12,7 +12,7 @@ const Item = styled.li`
   position: relative;
   width: 400px;
   height: 155px;
-  background-image: ${({ img }) => `url(${img})`};
+  background-image: ${({ img }) => `url(./${img})`};
   background-position: center;
   background-size: cover;
   font-size: 30px;
@@ -24,7 +24,7 @@ const Item = styled.li`
   color: #fff;
   z-index: 1;
   &:after {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     bottom: 0;
@@ -46,7 +46,7 @@ const Item = styled.li`
 
 export const ListItem = ({ itemList, setOpenItem }) => (
   <List>
-    {itemList.map(item => (
+    {itemList.map((item) => (
       <Item key={item.id} img={item.img} onClick={() => setOpenItem(item)}>
         <p>{item.name}</p>
         <p>{formatCurrency(item.price)}</p>
