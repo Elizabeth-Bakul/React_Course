@@ -1,8 +1,8 @@
-  
-import React from 'react';
-import styled from 'styled-components';
-import logoImg from '../../image/logo.svg';
-import signImg from '../../image/sign.svg';
+import React, { useContext } from "react";
+import styled from "styled-components";
+import logoImg from "../../image/logo.svg";
+import signImg from "../../image/sign.svg";
+import { Context } from "../Functions/context";
 
 const NavBarStyled = styled.header`
   position: fixed;
@@ -14,7 +14,7 @@ const NavBarStyled = styled.header`
   display: flex;
   justify-content: space-between;
   padding: 15px;
-  background-color: #299B01;
+  background-color: #299b01;
   color: #ffffff;
 `;
 
@@ -57,26 +57,34 @@ const Figure = styled.figure`
   margin: 0;
 `;
 
-export const NavBar = ({ authentication, logIn, logOut }) => (
-  <NavBarStyled>
-    <Logo>
-      <ImgLogo src={logoImg} alt="Лого" />
-      <H1>MrDonald&apos;s</H1>
-    </Logo>
-    {authentication ?
-      <User>
-        <Figure>
-          <img src={signImg} alt={authentication.displayName} />
-          <figcaption>{authentication.displayName}</figcaption>
-        </Figure>
-        <LogOut title="Выйти" onClick={logOut}>Х</LogOut>
-      </User> :
-      <Login onClick={logIn}>
-        <Figure>
-          <img src={signImg} alt="Пользователь" />
-          <figcaption>Войти</figcaption>
-        </Figure>
-      </Login>
-    }
-  </NavBarStyled>
-);
+export const NavBar = () => {
+  const {
+    auth: { authentication, logIn, logOut },
+  } = useContext(Context);
+  return (
+    <NavBarStyled>
+      <Logo>
+        <ImgLogo src={logoImg} alt="Лого" />
+        <H1>MrDonald&apos;s</H1>
+      </Logo>
+      {authentication ? (
+        <User>
+          <Figure>
+            <img src={signImg} alt={authentication.displayName} />
+            <figcaption>{authentication.displayName}</figcaption>
+          </Figure>
+          <LogOut title="Выйти" onClick={logOut}>
+            Х
+          </LogOut>
+        </User>
+      ) : (
+        <Login onClick={logIn}>
+          <Figure>
+            <img src={signImg} alt="Пользователь" />
+            <figcaption>Войти</figcaption>
+          </Figure>
+        </Login>
+      )}
+    </NavBarStyled>
+  );
+};
